@@ -9,6 +9,7 @@ export const readOnlySlug = 'read-only-collection';
 export const restrictedSlug = 'restricted';
 export const restrictedVersionsSlug = 'restricted-versions';
 export const siblingDataSlug = 'sibling-data';
+export const reproducer = 'reproducer';
 
 const openAccess = {
   create: () => true,
@@ -115,6 +116,37 @@ export default buildConfig({
         },
       ],
     },
+    {
+      slug: reproducer,
+      fields: [
+        {
+          type: 'text',
+          name: 'someData',
+          defaultValue: 'some data',
+          required: true,
+        },
+        {
+          type: 'text',
+          name: 'test',
+          access: {
+            read: (args) => {
+              console.log('----> test1 read control, args.data:', args.data);
+              return !!args.data;
+            },
+          },
+        },
+        {
+          type: 'text',
+          name: 'test2',
+          access: {
+            read: (args) => {
+              console.log('----> test2 read control, args.doc:', args.doc);
+              return !!args.doc;
+            },
+          },
+        },
+      ],
+    },
   ],
   onInit: async (payload) => {
     await payload.create({
@@ -159,6 +191,13 @@ export default buildConfig({
             allowPublicReadability: false,
           },
         ],
+      },
+    });
+
+    await payload.create({
+      collection: reproducer,
+      data: {
+        someData: 'some data',
       },
     });
   },
