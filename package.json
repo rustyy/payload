@@ -33,6 +33,7 @@
     "build": "yarn copyfiles && yarn build:tsc && yarn build:components",
     "build:watch": "nodemon --watch 'src/**' --ext 'ts,tsx' --exec 'yarn build:tsc'",
     "dev": "nodemon",
+    "dev:inspect": "nodemon --config nodemon-inspect.json",
     "dev:generate-types": "node ./test/generateTypes.js",
     "pretest": "yarn build",
     "test": "yarn test:int && yarn test:components && yarn test:e2e",

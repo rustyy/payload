@@ -205,6 +205,7 @@ const Routes = () => {
                                     exact
                                     render={(routeProps) => {
                                       const { match: { params: { id } } } = routeProps;
+                                      console.log('ROUTES.tsx');
                                       if (permissions?.collections?.[collection.slug]?.read?.permission) {
                                         return (
                                           <DocumentInfoProvider

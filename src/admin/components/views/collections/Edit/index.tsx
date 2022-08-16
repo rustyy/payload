@@ -129,6 +129,8 @@ const EditView: React.FC<IndexProps> = (props) => {
   const action = `${serverURL}${api}/${slug}${isEditing ? `/${id}` : ''}?locale=${locale}&depth=0&fallback-locale=null`;
   const hasSavePermission = (isEditing && collectionPermissions?.update?.permission) || (!isEditing && collectionPermissions?.create?.permission);
 
+  console.log('edit/index.tsx', permissions);
+
   return (
     <RenderCustomComponent
       DefaultComponent={DefaultEdit}

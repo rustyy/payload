@@ -72,6 +72,8 @@ const DefaultEditView: React.FC<Props> = (props) => {
 
   const operation = isEditing ? 'update' : 'create';
 
+  console.log(fields);
+
   return (
     <div className={classes}>
       {isLoading && (
